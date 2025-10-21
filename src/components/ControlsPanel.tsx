@@ -67,7 +67,7 @@ const ControlsPanel = () => {
       </div>
 
 
-        Checkbox region
+    
 
       <div className="flex flex-col gap-1 mt-14">
         <span>Status</span>

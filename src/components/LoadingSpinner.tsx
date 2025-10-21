@@ -1,9 +1,9 @@
 const LoadingSpinner = () => {
+  console.log('loading is executing')
   return (
-    <div className="w-2 h-2 border-2 border-gray-700 rounded-full box-border
-    border-t-[#4E80EE]
-    animate-loading
-    " ></div>
+    <div className="flex justify-center items-center  h-full">
+      <div className="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+    </div>
   )
 }
 
