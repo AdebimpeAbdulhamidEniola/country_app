@@ -13,6 +13,7 @@ const App = () => {
   
   //Function to fetch the data
   const fetchCountry = async () => {
+    console.log('start fetching ')
     setIsLoading(true)  //Starts loading
     setError(null)      //This removes old errors
 
@@ -23,6 +24,7 @@ const App = () => {
 
       setCountries(data as CountryResponse)
     } catch (error) {
+      console.log(error)
       if (error instanceof Error)
         setError(error.message)
       else
@@ -45,7 +47,7 @@ const App = () => {
   return (
     <div className="bg-[length:100%_auto] bg-[#1B1D1F] font-[Be_Vietnam_Pro,sans-serif] px-2 bg-[url('/resources/hero-image-sm.jpg')]  xl:bg-[url('/resources/hero-image.jpg')]      w-full   bg-no-repeat overflow-x-hidden">
       <img alt="" src="/resources/Logo.svg"   className="w-auto h-auto mx-auto pt-10"/>
-      <WorldRanksPage isLoading = {isLoading}  countries = {countries as CountryResponse} error = {error}/>
+      <WorldRanksPage isLoading = {isLoading}  countries = {countries} error = {error}/>
     </div>
   )
 }
