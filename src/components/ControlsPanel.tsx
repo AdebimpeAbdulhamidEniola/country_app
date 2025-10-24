@@ -1,15 +1,23 @@
 import { useState } from "react";
+import type { SortParameter, Region } from "../types";
 
-const ControlsPanel = () => {
+const ControlsPanel = ({
+  sortFunc,
+  filterCountry,
+}: {
+  sortFunc: (sortParameter: SortParameter) => void;
+  filterCountry: (filterParam: Region) => void
+}) => {
   const [isUN, setIsUN] = useState(false);
   const [isIndependent, setIsIndependent] = useState(false);
   return (
-    <div className="mt-10">
+    <div className="mt-10  ">
       <div className="flex flex-col gap-2">
         <label htmlFor="sort"> Sort by</label>
         <select
           id="sort"
           className="appearance-none outline-0 bg-[#282B30] cursor-pointer border-1 border-[#6c727f] py-1 rounded-lg bg-[url('/resources/Expand_down.svg')] bg-no-repeat bg-right"
+          onChange={(event) => sortFunc(event.target.value as SortParameter)}
         >
           <option value="population">Population</option>
           <option value="name">Name</option>
@@ -25,6 +33,8 @@ const ControlsPanel = () => {
           <button
             className={` pl-3  pr-5 py-2 hover:rounded-lg hover:bg-[#1b1d1f] ${""}`}
             id="region_selection"
+            value="Americas"
+            onClick={(event) => filterCountry(event.currentTarget.value as Region)}
           >
             America
           </button>
@@ -32,13 +42,17 @@ const ControlsPanel = () => {
           <button
             className={` pl-3  pr-5 py-2 hover:rounded-lg hover:bg-[#1b1d1f] ${""}`}
             id="region_selection"
+            value="Antarctic"
+            onClick={(event) => filterCountry(event.currentTarget.value as Region)}
           >
-            Antartic
+            Antartica
           </button>
 
           <button
             className={` pl-3  pr-5 py-2 hover:rounded-lg hover:bg-[#1b1d1f] ${""}`}
             id="region_selection"
+            value="Africa"
+             onClick={(event) => filterCountry(event.currentTarget.value as Region)}
           >
             Africa
           </button>
@@ -46,6 +60,8 @@ const ControlsPanel = () => {
           <button
             className={` pl-3  pr-5 py-2 hover:rounded-lg hover:bg-[#1b1d1f] ${""}`}
             id="region_selection"
+            value="Asia"
+            onClick={(event) => filterCountry(event.currentTarget.value as Region)}
           >
             Asia
           </button>
@@ -53,6 +69,8 @@ const ControlsPanel = () => {
           <button
             className={` pl-3  pr-5 py-2 hover:rounded-lg hover:bg-[#1b1d1f] ${""}`}
             id="region_selection"
+            value="Europe"
+            onClick={(event) => filterCountry(event.currentTarget.value as Region)}
           >
             Europe
           </button>
@@ -60,14 +78,13 @@ const ControlsPanel = () => {
           <button
             className={` pl-3  pr-5 py-2 hover:rounded-lg hover:bg-[#1b1d1f] ${""}`}
             id="region_selection"
+            value="Oceania"
+            onClick={(event) => filterCountry(event.currentTarget.value as Region)}
           >
             Oceania
           </button>
         </div>
       </div>
-
-
-    
 
       <div className="flex flex-col gap-1 mt-14">
         <span>Status</span>
@@ -81,10 +98,29 @@ const ControlsPanel = () => {
             aria-checked={isUN}
             aria-label="Member of the United Nations"
           />
-          <span className={`w-5 h-5 rounded-sm border-2 border-[#6c727f] flex items-center justify-center
-            text-transparent ${isUN ? 'text-white border-transparent bg-[#2563eb]' : ''}`}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={`w-3 h-3 ${isUN ? 'opacity-100' : 'opacity-0'} transition-all duration-200`}>
-              <path d="M5 14L8.23309 16.4248C8.66178 16.7463 9.26772 16.6728 9.60705 16.2581L18 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <span
+            className={`w-5 h-5 rounded-sm border-2 border-[#6c727f] flex items-center justify-center
+            text-transparent ${
+              isUN ? "text-white border-transparent bg-[#2563eb]" : ""
+            }`}
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className={`w-3 h-3 ${
+                isUN ? "opacity-100" : "opacity-0"
+              } transition-all duration-200`}
+            >
+              <path
+                d="M5 14L8.23309 16.4248C8.66178 16.7463 9.26772 16.6728 9.60705 16.2581L18 6"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
           </span>
           <span>Member of United Nations</span>
@@ -99,18 +135,34 @@ const ControlsPanel = () => {
             aria-checked={isIndependent}
             aria-label="Independent"
           />
-          <span className={`w-5 h-5 rounded-sm border-2 border-[#6c727f] flex items-center justify-center
-            text-transparent ${isIndependent ? 'text-white border-transparent bg-[#2563eb]' : ''}`}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={`w-3 h-3 ${isIndependent ? 'opacity-100' : 'opacity-0'} transition-all duration-200`}>
-              <path d="M5 14L8.23309 16.4248C8.66178 16.7463 9.26772 16.6728 9.60705 16.2581L18 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <span
+            className={`w-5 h-5 rounded-sm border-2 border-[#6c727f] flex items-center justify-center
+            text-transparent ${
+              isIndependent ? "text-white border-transparent bg-[#2563eb]" : ""
+            }`}
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className={`w-3 h-3 ${
+                isIndependent ? "opacity-100" : "opacity-0"
+              } transition-all duration-200`}
+            >
+              <path
+                d="M5 14L8.23309 16.4248C8.66178 16.7463 9.26772 16.6728 9.60705 16.2581L18 6"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
           </span>
           <span>Independent</span>
         </label>
       </div>
-
-
-      
     </div>
   );
 };
