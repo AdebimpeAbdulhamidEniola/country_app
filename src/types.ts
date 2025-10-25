@@ -30,6 +30,11 @@ export type Region =
   | "Europe"
   | "Oceania";
 
-
+export type PaginationProps = {
+  totalCountries: number;
+  dataPerPage: number;
+  currentPage: number;
+  setCurrentPage: (pageNumber: number) => void;
+}
 
 export type CountryResponse = Country[]

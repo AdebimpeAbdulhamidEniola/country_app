@@ -72,10 +72,6 @@ const App = () => {
 
     console.log(filterParam);
 
-    if (filterParam === "All") {
-      setCountries(allCountries);
-      return;
-    }
 
     const filteredCountry = allCountries.filter(
       (country) => country.region === filterParam
