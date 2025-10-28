@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import WorldRanksPage from "./components/WorldRanksPage";
 import type { CountryResponse, Region, SortParameter } from "./types";
+import {Routes, Route} from 'react-router-dom'
 
 const App = () => {
   const [allCountries, setAllCountries] = useState<CountryResponse | null>(null); // original full data
@@ -16,7 +17,7 @@ const App = () => {
 
     try {
       const response = await fetch(
-        "https://restcountries.com/v3.1/all?fields=flags,name,population,area,region"
+        "https://restcountries.com/v3.1/all?fields=flags,name,population,area,region,cca3"
       );
       const data = await response.json();
       console.log(data);
@@ -94,6 +95,8 @@ const App = () => {
         sortFunc={handleSort}
         filterCountry={handleFilter}
       />
+
+      
     </div>
   );
 };

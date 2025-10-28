@@ -1,4 +1,4 @@
-interface Country {
+export interface Country {
   flags: {
     png: string;
     svg: string;
@@ -14,6 +14,7 @@ interface Country {
       };
     };
   };
+  cca3: string,
   region: string;
   area: number;
   population: number;

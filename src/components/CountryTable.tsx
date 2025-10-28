@@ -1,4 +1,5 @@
 import type { CountryResponse } from "../types";
+import CountryCard from "./CountryCard";
 import LoadingSpinner from "./LoadingSpinner";
 
 const CountryTable = ({
@@ -33,19 +34,7 @@ const CountryTable = ({
         <tbody>
           {countries && countries.length > 0 ? (
             countries.map((country) => (
-              <tr key={country.name.common}>
-                <td className="px-2 py-2">
-                  <img
-                    src={country.flags.png}
-                    alt={country.flags.alt}
-                    className="w-10 h-6 object-cover"
-                  />
-                </td>
-                <td className="pr-2 py-2 ">{country.name.common}</td>
-                <td className="pr-2 py-2">{country.population}</td>
-                <td className="pr-2 py-2">{country.area}</td>
-                <td className="pr-2 py-2 ">{country.region}</td>
-              </tr>
+              <CountryCard country ={country} key={country.cca3} />
             ))
           ) : (
             <tr>
