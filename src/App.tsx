@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import WorldRanksPage from "./components/WorldRanksPage";
 import type { CountryResponse, Region, SortParameter } from "./types";
-import {Routes, Route} from 'react-router-dom'
+import { Routes, Route } from "react-router-dom";
+import CountryDetails from "./components/CountryDetails";
 
 const App = () => {
-  const [allCountries, setAllCountries] = useState<CountryResponse | null>(null); // original full data
+  const [allCountries, setAllCountries] = useState<CountryResponse | null>(
+    null
+  ); // original full data
   const [countries, setCountries] = useState<CountryResponse | null>(null); // current (filtered/sorted)
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -73,7 +76,6 @@ const App = () => {
 
     console.log(filterParam);
 
-
     const filteredCountry = allCountries.filter(
       (country) => country.region === filterParam
     );
@@ -82,21 +84,28 @@ const App = () => {
   };
 
   return (
-    <div className="bg-[length:100%_auto] bg-[#1B1D1F] font-[Be_Vietnam_Pro,sans-serif] px-2 bg-[url('/resources/hero-image-sm.jpg')] xl:bg-[url('/resources/hero-image.jpg')] xl:bg-fixed w-full bg-no-repeat overflow-x-hidden">
+    <div className="bg-[length:100%_auto] bg-[#1B1D1F] font-[Be_Vietnam_Pro,sans-serif] px-2 bg-[url('/resources/hero-image-sm.jpg')] xl:bg-[url('/resources/hero-image.jpg')] xl:bg-fixed w-full bg-no-repeat overflow-x-hidden min-h-screen">
       <img
         alt=""
         src="/resources/Logo.svg"
         className="w-auto h-auto mx-auto pt-10"
       />
-      <WorldRanksPage
-        isLoading={isLoading}
-        countries={countries}
-        error={error}
-        sortFunc={handleSort}
-        filterCountry={handleFilter}
-      />
 
-      
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <WorldRanksPage
+              isLoading={isLoading}
+              countries={countries}
+              error={error}
+              sortFunc={handleSort}
+              filterCountry={handleFilter}
+            />
+          }
+        />
+        <Route path="/countries/:id"  element={<CountryDetails />} />
+      </Routes>
     </div>
   );
 };

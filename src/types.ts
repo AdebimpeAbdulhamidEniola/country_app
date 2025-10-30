@@ -20,7 +20,47 @@ export interface Country {
   population: number;
 }
 
+export interface SingleCountry {
+  name: {
+    common: string;
+    official: string;
+    nativeName?: {
+      [key: string]: {
+        official: string;
+        common: string;
+      };
+    };
+  };
+  cca2: string;
+  cca3: string;
+  flags: {
+    png: string;
+    svg: string;
+    alt?: string;
+  };
+  region: string;
+  subregion?: string;
+  capital?: string[];
+  population: number;
+  area: number;
+  independent?: boolean;
+  unMember?: boolean;
+  currencies?: {
+    [code: string]: {
+      name: string;
+      symbol: string;
+    };
+  };
+  languages?: {
+    [code: string]: string;
+  };
+  borders?: string[];
+  timezones?: string[]
+}
+
+
 export type SortParameter = 'population' | 'name' | 'area'
+export type BorderType = SingleCountry['borders']
 
 
 export type Region =
