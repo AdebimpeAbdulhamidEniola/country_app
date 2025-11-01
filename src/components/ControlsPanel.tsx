@@ -4,13 +4,11 @@ import type { SortParameter, Region } from "../types";
 const ControlsPanel = ({
   sortFunc,
   filterCountry,
-  selectedRegion,
-  setSelectedRegion
+  selectedRegion
 }: {
   sortFunc: (sortParameter: SortParameter) => void;
   filterCountry: (filterParam: Region) => void;
   selectedRegion: Region | "";
-  setSelectedRegion: (region: Region | "") => void;
 }) => {
   const [isUN, setIsUN] = useState(false);
   const [isIndependent, setIsIndependent] = useState(false);

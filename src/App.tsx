@@ -123,7 +123,7 @@ const App = () => {
               search={searchTerm}
               debouncedSearch={handleSearch}
               selectedRegion={selectedRegion}
-              setSelectedRegion={setSelectedRegion}
+
             />
           }
         />

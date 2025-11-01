@@ -13,7 +13,7 @@ const WorldRanksPage = ({
   search,
   debouncedSearch,
   selectedRegion,
-  setSelectedRegion
+  
 }: {
   isLoading: boolean;
   countries: CountryResponse | null;
@@ -23,14 +23,13 @@ const WorldRanksPage = ({
   search: string;
   debouncedSearch: (searchString: string) => void,
   selectedRegion: Region | "";
-  setSelectedRegion: (region: Region | "") => void;
 }) => {
   return (
     <div className="rounded-md  text-white bg-[#282B30] w-full min-h-screen mt-5 mx-auto px-4 py-5 lg:mt-60">
       <Search countries = {countries} search = {search}  debouncedSearch = {debouncedSearch}/>
 
       <div className="lg:grid lg:grid-cols-[400px_1fr] lg:gap-x-4">
-        <ControlsPanel sortFunc ={sortFunc}  filterCountry = {filterCountry} selectedRegion={selectedRegion} setSelectedRegion={setSelectedRegion} />
+        <ControlsPanel sortFunc ={sortFunc}  filterCountry = {filterCountry} selectedRegion={selectedRegion} />
         <CountryTable
           isLoading={isLoading}
           countries={countries}
