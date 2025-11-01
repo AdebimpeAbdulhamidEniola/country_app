@@ -11,6 +11,8 @@ const App = () => {
   const [countries, setCountries] = useState<CountryResponse | null>(null); // current (filtered/sorted)
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedRegion, setSelectedRegion] = useState<Region | "">("");
 
   // Fetch all countries
   const fetchCountry = async () => {
@@ -74,7 +76,7 @@ const App = () => {
   const handleFilter = (filterParam: Region): void => {
     if (!allCountries) return;
 
-    console.log(filterParam);
+    setSelectedRegion(filterParam);
 
     const filteredCountry = allCountries.filter(
       (country) => country.region === filterParam
@@ -83,8 +85,25 @@ const App = () => {
     setCountries(filteredCountry);
   };
 
+  const handleSearch = (searchString: string): void => {
+    if (!allCountries) return;
+    setSearchTerm(searchString);
+
+    // Optimized search - do toLowerCase once
+    const searchLower = searchString.toLowerCase();
+    
+    const relatedCountries = allCountries.filter((country) => {
+      return (
+        country.name.common.toLowerCase().includes(searchLower) ||
+        country.region.toLowerCase().includes(searchLower)
+      );
+    });
+
+    setCountries(relatedCountries.length > 0 ? relatedCountries : []);
+  };
+
   return (
-    <div className="bg-[length:100%_auto] bg-[#1B1D1F] font-[Be_Vietnam_Pro,sans-serif] px-2 bg-[url('/resources/hero-image-sm.jpg')] xl:bg-[url('/resources/hero-image.jpg')] xl:bg-fixed w-full bg-no-repeat overflow-x-hidden min-h-screen">
+    <div className="bg-[length:100%_auto] bg-[#1B1D1F] font-[Be_Vietnam_Pro,sans-serif] px-10 bg-[url('/resources/hero-image-sm.jpg')] lg:bg-[url('/resources/hero-image.jpg')] lg:bg-fixed  bg-no-repeat overflow-x-hidden min-h-screen">
       <img
         alt=""
         src="/resources/Logo.svg"
@@ -101,10 +120,14 @@ const App = () => {
               error={error}
               sortFunc={handleSort}
               filterCountry={handleFilter}
+              search={searchTerm}
+              debouncedSearch={handleSearch}
+              selectedRegion={selectedRegion}
+              setSelectedRegion={setSelectedRegion}
             />
           }
         />
-        <Route path="/countries/:id"  element={<CountryDetails />} />
+        <Route path="/countries/:id" element={<CountryDetails />} />
       </Routes>
     </div>
   );

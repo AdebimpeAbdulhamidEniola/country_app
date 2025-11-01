@@ -4,9 +4,13 @@ import type { SortParameter, Region } from "../types";
 const ControlsPanel = ({
   sortFunc,
   filterCountry,
+  selectedRegion,
+  setSelectedRegion
 }: {
   sortFunc: (sortParameter: SortParameter) => void;
-  filterCountry: (filterParam: Region) => void
+  filterCountry: (filterParam: Region) => void;
+  selectedRegion: Region | "";
+  setSelectedRegion: (region: Region | "") => void;
 }) => {
   const [isUN, setIsUN] = useState(false);
   const [isIndependent, setIsIndependent] = useState(false);
@@ -31,7 +35,7 @@ const ControlsPanel = ({
         {/* The Buttons for selecting regions */}
         <div className="flex flex-wrap ">
           <button
-            className={` pl-3  pr-5 py-2 hover:rounded-lg hover:bg-[#1b1d1f] ${""}`}
+            className={` pl-3  pr-5 py-2 hover:rounded-lg hover:bg-[#4c9aff] transition-all ${selectedRegion === "Americas" ? "bg-[#4c9aff] rounded-lg" : ""}`}
             id="region_selection"
             value="Americas"
             onClick={(event) => filterCountry(event.currentTarget.value as Region)}
@@ -40,7 +44,7 @@ const ControlsPanel = ({
           </button>
 
           <button
-            className={` pl-3  pr-5 py-2 hover:rounded-lg hover:bg-[#1b1d1f] ${""}`}
+            className={` pl-3  pr-5 py-2 hover:rounded-lg hover:bg-[#4c9aff] transition-all ${selectedRegion === "Antarctic" ? "bg-[#4c9aff] rounded-lg" : ""}`}
             id="region_selection"
             value="Antarctic"
             onClick={(event) => filterCountry(event.currentTarget.value as Region)}
@@ -49,7 +53,7 @@ const ControlsPanel = ({
           </button>
 
           <button
-            className={` pl-3  pr-5 py-2 hover:rounded-lg hover:bg-[#1b1d1f] ${""}`}
+            className={` pl-3  pr-5 py-2 hover:rounded-lg hover:bg-[#4c9aff] transition-all ${selectedRegion === "Africa"?"bg-[#4c9aff] rounded-lg":"" }`}
             id="region_selection"
             value="Africa"
              onClick={(event) => filterCountry(event.currentTarget.value as Region)}
@@ -58,7 +62,7 @@ const ControlsPanel = ({
           </button>
 
           <button
-            className={` pl-3  pr-5 py-2 hover:rounded-lg hover:bg-[#1b1d1f] ${""}`}
+            className={` pl-3  pr-5 py-2 hover:rounded-lg hover:bg-[#4c9aff]  transition-all ${selectedRegion === "Asia" ? "bg-[#4c9aff] rounded-lg":"" }`}
             id="region_selection"
             value="Asia"
             onClick={(event) => filterCountry(event.currentTarget.value as Region)}
@@ -67,7 +71,7 @@ const ControlsPanel = ({
           </button>
 
           <button
-            className={` pl-3  pr-5 py-2 hover:rounded-lg hover:bg-[#1b1d1f] ${""}`}
+            className={` pl-3  pr-5 py-2 hover:rounded-lg hover:bg-[#4c9aff] transition-all ${selectedRegion === "Europe" ? "bg-[#4c9aff] rounded-lg":""}`}
             id="region_selection"
             value="Europe"
             onClick={(event) => filterCountry(event.currentTarget.value as Region)}
@@ -76,7 +80,7 @@ const ControlsPanel = ({
           </button>
 
           <button
-            className={` pl-3  pr-5 py-2 hover:rounded-lg hover:bg-[#1b1d1f] ${""}`}
+            className={` pl-3  pr-5 py-2 hover:rounded-lg hover:bg-[#4c9aff] transition-all ${selectedRegion === "Oceania" ? "bg-[#4c9aff] rounded-lg":""}`}
             id="region_selection"
             value="Oceania"
             onClick={(event) => filterCountry(event.currentTarget.value as Region)}

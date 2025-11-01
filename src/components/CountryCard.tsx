@@ -8,7 +8,7 @@ const CountryCard = ({ country }: { country: Country }) => {
     <tr
       key={country.cca3}
       onClick={() => navigate(`/countries/${country.cca3}`)}
-      className="cursor-pointer hover:bg-gray-800 transition"
+      className="cursor-pointer hover:bg-[#4c9aff]  transition-all"
     >
       <td className="px-2 py-2">
         <img
