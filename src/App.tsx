@@ -90,7 +90,7 @@ const App = () => {
     setSearchTerm(searchString);
 
     // Optimized search - do toLowerCase once
-    const searchLower = searchString.toLowerCase();
+    const searchLower = searchString.toLowerCase().trim();
     
     const relatedCountries = allCountries.filter((country) => {
       return (
