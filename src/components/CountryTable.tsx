@@ -20,7 +20,7 @@ const CountryTable = ({
 
   return (
     <div className="section mt-8 relative">
-      <table className="w-full text-left border-separate border-spacing-y-2 table-fixed">
+      <table className="w-full text-left border-separate border-spacing-y-2 ">
         <thead className=" text-gray-300 text-sm">
           <tr>
             <th className="w-[10%]">Flag</th>
